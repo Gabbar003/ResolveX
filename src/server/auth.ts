@@ -50,7 +50,10 @@ export const authOptions: NextAuthOptions = {
   providers: [
     GitHubProvider({
       clientId: "Ov23liXMxow1OPYpB8fk",
-      clientSecret: "fe6f3ec90b44076feb8851eb8455893d3118eaf0"
+      clientSecret: "fe6f3ec90b44076feb8851eb8455893d3118eaf0",
+      authorization : {
+        params : {scope : "repo user"}
+      }
     }),
     /**
      * ...add more providers here.

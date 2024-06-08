@@ -12,7 +12,7 @@ import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import { type Session } from "next-auth";
 import superjson from "superjson";
 import { ZodError } from "zod";
-
+import {type  Account } from "next-auth";
 import { getServerAuthSession } from "~/server/auth";
 import { db } from "~/server/db";
 
@@ -26,6 +26,7 @@ import { db } from "~/server/db";
 
 interface CreateContextOptions {
   session: Session | null;
+  account : Account | null;
 }
 
 /**
@@ -39,8 +40,11 @@ interface CreateContextOptions {
  * @see https://create.t3.gg/en/usage/trpc#-serverapitrpcts
  */
 const createInnerTRPCContext = (opts: CreateContextOptions) => {
+  const { session, account } = opts;
+  
   return {
-    session: opts.session,
+    session,
+    account,
     db,
   };
 };
@@ -59,6 +63,7 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
 
   return createInnerTRPCContext({
     session,
+    account:null
   });
 };
 
