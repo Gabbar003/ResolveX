@@ -1,6 +1,9 @@
 import { postRouter } from "~/server/api/routers/post";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 import { Tokenrouter } from "./routers/token";
+import { Issuerouter } from "./routers/git";
+import { Rankrouter } from "./routers/rank";
+import { profileRouter } from "./routers/profile";
 /**
  * This is the primary router for your server.
  *
@@ -8,7 +11,10 @@ import { Tokenrouter } from "./routers/token";
  */
 export const appRouter = createTRPCRouter({
   post: postRouter,
-  token :  Tokenrouter
+  token :  Tokenrouter,
+  issue : Issuerouter,
+  profile : profileRouter,
+  rank : Rankrouter
 });
 
 // export type definition of API

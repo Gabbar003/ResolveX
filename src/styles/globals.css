@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.vfe {
+    background-image: url("Shadow.png");
+    background-color: black;
+  }

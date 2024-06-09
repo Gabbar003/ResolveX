@@ -26,7 +26,6 @@ export const Tokenrouter = createTRPCRouter({
                 data: {
                      id : ctx.session?.user.id,
                     name: ctx.session?.user.name,
-                     gitAccessToken :  ctx.account?.access_token,
                     email : ctx.session?.user.email,
                     image : ctx.session?.user.image,
                 }   
@@ -42,9 +41,9 @@ export const Tokenrouter = createTRPCRouter({
 
     getGithubToken: protectedProcedure
     .query(async({ctx})=> {
-        const user = await ctx.db.account.findUnique({
+        const user = await ctx.db.account.findFirst({
             where  : {
-                id: ctx.session?.user.id
+                userId : ctx.session?.user.id
             }
         })
         if(user){
